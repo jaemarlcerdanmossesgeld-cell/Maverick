@@ -1,0 +1,112 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0e3a4d;
+  color: white;
+}
+header {
+  background: #235973;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+.logo img {
+  height: 45px; /* adjust as needed */
+  width: auto;
+  display: block;
+}
+
+.search {
+  background: white;
+  border-radius: 20px;
+  padding: 5px 15px;
+  color: #333;
+}
+.container {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.card {
+  background: #48606c;
+  border: 3px solid gold;
+  padding: 20px;
+  border-radius: 10px;
+  width: 280px;
+  text-align: center;
+}
+.card img {
+  width: 100%;
+  height: auto;
+}
+/* Footer Layout Fix */
+footer {
+  margin-top: auto;
+  background: #0c3a4a;
+  padding: 40px;
+  color: white;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-col {
+  flex: 1 1 250px;
+  min-width: 220px;
+}
+
+.footer-col h4 {
+  color: gold;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.footer-col p,
+.footer-col a {
+  font-size: 14px;
+  color: white;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+}
+
+.footer-logo {
+  width: 130px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  margin-top: 10px;
+}
