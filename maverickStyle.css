@@ -6,6 +6,7 @@ body {
 body {
   display: flex;
   flex-direction: column;
+
 }
 
 body {
@@ -13,6 +14,9 @@ body {
   font-family: Arial, sans-serif;
   background: #0e3a4d;
   color: white;
+  
+  /* === ADDED: Fade in on page load === */
+  animation: page-fade-in 0.5s ease-in;
 }
 header {
   background: #235973;
@@ -159,28 +163,9 @@ nav a {
 }
 
 /* === 
-REPLACED ALL OLD FOOTER STYLES 
-WITH THESE NEW MODERN FOOTER STYLES 
+CLEANED UP FOOTER STYLES 
+(REMOVED BANNER AND CONFLICTS)
 === */
-
-/* 1. Main Wrapper */
-.modern-footer-wrapper {
-  margin-top: auto; /* Pushes footer to the bottom */
-  width: 100%;
-  color: #adb5bd; /* Light grey text */
-  background: #0e3a4d; /* Main page background */
-}
-
-/* 2. "Ready for a next project?" Banner */
-.footer-cta {
-  /* This div is now just a full-width container */
-  width: 100%;
-  padding: 30px 40px;
-  box-sizing: border-box; /* Include padding in width */
-  background: #0c3a4a; /* Darker teal from your old footer */
-}
-
-/* === NEW MODERN FOOTER STYLES === */
 
 /* This rule centers the content */
 .footer-inner-content {
@@ -266,6 +251,18 @@ WITH THESE NEW MODERN FOOTER STYLES
   color: #333;
 }
 
+/* === ADDED: PAGE TRANSITION STYLES === */
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body.page-fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+
 /* === RESPONSIVE STYLES === */
 /* This breakpoint activates on screens 800px wide or smaller */
 
@@ -328,6 +325,38 @@ WITH THESE NEW MODERN FOOTER STYLES
 
   .social-icons {
     justify-content: center; /* Center social icons */
+  }
+  
+  /* === HOMEPAGE RESPONSIVE === */
+  .hero-section {
+    /* Stack homepage hero on mobile */
+    grid-template-columns: 1fr; /* Single column */
+    text-align: center;
+  }
+  
+  .hero-text {
+    padding-right: 0;
+  }
+  
+  .store-status {
+    justify-content: center;
+  }
+  
+  .hero-stats {
+    /* Make stats horizontal on mobile */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0;
+  }
+  
+  .stat-item {
+    border-left: none;
+    border-top: 3px solid #48606c;
+    padding-top: 15px;
+    padding-left: 10px;
+    min-width: 120px;
+    text-align: left;
   }
 }
 
