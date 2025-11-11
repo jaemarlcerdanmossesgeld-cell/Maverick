@@ -1,6 +1,6 @@
 html,
 body {
-  height: 100%;
+  min-height: 100vh;
 }
 
 body {
@@ -39,12 +39,23 @@ nav a {
   padding: 5px 15px;
   color: #333;
 }
-.container {
+
+/* === STYLES FOR THE WRAPPER === */
+.main-content-wrapper {
+  display: flex;
+  flex: 1; /* Makes wrapper fill vertical space */
   padding: 40px;
+  gap: 10px;
+  align-items: flex-start; /* Stops cards from stretching */
+}
+
+/* === STYLES FOR CARD CONTAINER === */
+.container {
   display: flex;
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
+  flex-shrink: 0; /* Stops this container from shrinking */
 }
 .card {
   background: #48606c;
@@ -60,7 +71,6 @@ nav a {
 }
 /* Footer Layout Fix */
 footer {
-  margin-top: auto;
   background: #0c3a4a;
   padding: 40px;
   color: white;
@@ -109,4 +119,56 @@ a {
   color: black;
   font-weight: bold;
   margin-top: 10px;
+}
+/* === STYLES FOR OPTIONS === */
+
+.options-container {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.options-set {
+  display: none;
+  width: 100%;
+  flex-direction: column; /* Stacks options top-to-bottom */
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+/* This is the style for the individual model links */
+.option-item {
+  background: #235973;
+  border: 2px solid gold;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+
+  /* Animation for a clean fade-in */
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.3s forwards;
+}
+
+.option-item:hover {
+  background: #48606c;
+}
+.container.is-filtered {
+  justify-content: flex-start;
+  transition: justify-content 0.3s ease;
+}
+
+/* A simple fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* === ADD THIS NEW STYLE FOR THE SPACER === */
+.spacer {
+  flex-grow: 1; /* This soaks up all extra space */
 }
