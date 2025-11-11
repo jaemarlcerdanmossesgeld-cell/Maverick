@@ -10,64 +10,85 @@
   <body>
     <header>
       <div class="logo">
-  <img src="images/logo.png" alt="Maverick Racing Logo" />
-</div>
+        <img src="images/logo.png" alt="Maverick Racing Logo" />
+      </div>
 
       <nav>
         <a href="#">HOME</a>
-        <a href="#">CATALOGUE</a>
+        <a href="maverickPage.html">CATALOGUE</a>
         <a href="#">APPOINTMENT</a>
         <a href="#">ABOUT US</a>
       </nav>
       <div class="search">Search...</div>
     </header>
 
-    <div class="container">
-      <div class="card">
-        <img src="images/Honda.png" alt="Honda" />
-        <h2>HONDA</h2>
+    <div class="main-content-wrapper">
+
+      <div class="container">
+        <div class="card" data-brand="honda">
+          <img src="images/Honda.png" alt="Honda" />
+          <h2>HONDA</h2>
+        </div>
+        <div class="card" data-brand="rusi">
+          <img src="images/Rusi.png" alt="Rusi" />
+          <h2>RUSI</h2>
+        </div>
+        <div class="card" data-brand="suzuki">
+          <img src="images/Suzuki.png" alt="Suzuki" />
+          <h2>SUZUKI</h2>
+        </div>
       </div>
-      <div class="card">
-        <img src="images/Rusi.png" alt="Rusi" />
-        <h2>RUSI</h2>
+
+      <div class="options-container">
+        
+        <div id="honda-options" class="options-set">
+          <a href="#" class="option-item">The All-New Giorno+</a>
+          <a href="#" class="option-item">The New CLICK125 (Special Edition)</a>
+          <a href="#" class="option-item">The All-New ADV350</a>
+        </div>
+
+        <div id="rusi-options" class="options-set">
+          <a href="#" class="option-item">Rusi Model 1 (Coming Soon)</a>
+        </div>
+
+        <div id="suzuki-options" class="options-set">
+          <a href="#" class="option-item">Suzuki Model 1 (Coming Soon)</a>
+        </div>
       </div>
-      <div class="card">
-        <img src="images/Suzuki.png" alt="Suzuki" />
-        <h2>SUZUKI</h2>
+
+      <div class="spacer"></div>
+
+    </div> <footer>
+      <div class="footer-content">
+
+        <div class="footer-col">
+          <h4>Business Information</h4>
+          <p>Maverick branches across Luzon, Philippines.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <p>Facebook</p>
+          <p>Instagram</p>
+          <p>TikTok</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="#">FAQs</a><br>
+          <a href="#">Warranty</a><br>
+          <a href="#">Customer Service</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>📍 Luzon, Philippines</p>
+          <p>📞 +63 900 000 0000</p>
+          <p>✉️ maverick@example.com</p>
+        </div>
+
       </div>
-    </div>
-
-<footer>
-  <div class="footer-content">
-
-    <div class="footer-col">
-      <h4>Business Information</h4>
-      <p>Maverick branches across Luzon, Philippines.</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Follow Us</h4>
-      <p>Facebook</p>
-      <p>Instagram</p>
-      <p>TikTok</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Support</h4>
-      <a href="#">FAQs</a><br>
-      <a href="#">Warranty</a><br>
-      <a href="#">Customer Service</a>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>📍 Luzon, Philippines</p>
-      <p>📞 +63 900 000 0000</p>
-      <p>✉️ maverick@example.com</p>
-    </div>
-
-  </div>
-</footer>
+    </footer>
 
     <script src="maverickScript.js"></script>
   </body>
