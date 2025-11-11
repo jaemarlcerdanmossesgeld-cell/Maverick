@@ -7,8 +7,9 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
 
   // Temporary login check (You can change credentials later)
   if (username === "admin" && password === "password123") {
-    window.location.href = "maverickPage.html"; // ✅ redirect to Maverick page
+    window.location.href = "index.html"; // ✅ redirect to Maverick page
   } else {
     error.textContent = "Invalid username or password";
   }
 });
+
