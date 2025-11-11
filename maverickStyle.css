@@ -34,12 +34,49 @@ nav a {
 }
 
 .search {
+  display: none;
+}
+.search-container {
+  display: flex;
+  align-items: center;
   background: white;
   border-radius: 20px;
-  padding: 5px 15px;
-  color: #333;
+  padding: 5px 5px 5px 15px;
 }
 
+.search-container input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #333;
+  font-weight: bold;
+}
+
+.search-container button {
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style the new icon links */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+}
 /* === STYLES FOR THE WRAPPER === */
 .main-content-wrapper {
   display: flex;
@@ -57,6 +94,10 @@ nav a {
   flex-wrap: wrap;
   flex-shrink: 0; /* Stops this container from shrinking */
 }
+.container.is-filtered {
+  justify-content: flex-start;
+  transition: justify-content 0.3s ease;
+}
 .card {
   background: #48606c;
   border: 3px solid gold;
@@ -68,57 +109,6 @@ nav a {
 .card img {
   width: 100%;
   height: auto;
-}
-/* Footer Layout Fix */
-footer {
-  background: #0c3a4a;
-  padding: 40px;
-  color: white;
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 40px;
-}
-
-.footer-col {
-  flex: 1 1 250px;
-  min-width: 220px;
-}
-
-.footer-col h4 {
-  color: gold;
-  margin-bottom: 10px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.footer-col p,
-.footer-col a {
-  font-size: 14px;
-  color: white;
-  line-height: 1.6;
-}
-
-a {
-  text-decoration: none;
-}
-
-.footer-logo {
-  width: 130px;
-  height: 50px;
-  background: #ffffff;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  font-weight: bold;
-  margin-top: 10px;
 }
 /* === STYLES FOR OPTIONS === */
 
@@ -157,18 +147,278 @@ a {
 .option-item:hover {
   background: #48606c;
 }
-.container.is-filtered {
-  justify-content: flex-start;
-  transition: justify-content 0.3s ease;
-}
-
 /* A simple fade-in animation */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* === ADD THIS NEW STYLE FOR THE SPACER === */
+/* === SPACER === */
 .spacer {
   flex-grow: 1; /* This soaks up all extra space */
+}
+
+/* === 
+REPLACED ALL OLD FOOTER STYLES 
+WITH THESE NEW MODERN FOOTER STYLES 
+=== */
+
+/* 1. Main Wrapper */
+.modern-footer-wrapper {
+  margin-top: auto; /* Pushes footer to the bottom */
+  width: 100%;
+  color: #adb5bd; /* Light grey text */
+  background: #0e3a4d; /* Main page background */
+}
+
+/* 2. "Ready for a next project?" Banner */
+.footer-cta {
+  /* This div is now just a full-width container */
+  width: 100%;
+  padding: 30px 40px;
+  box-sizing: border-box; /* Include padding in width */
+  background: #0c3a4a; /* Darker teal from your old footer */
+}
+
+/* === NEW MODERN FOOTER STYLES === */
+
+/* This rule centers the content */
+.footer-inner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* This is the main footer background */
+.modern-footer {
+  margin-top: auto; /* Pushes footer to the bottom */
+  background-color: #235973; /* Your header color */
+  padding: 40px;
+  color: #adb5bd; /* Light grey text */
+  position: relative;
+  z-index: 5;
+}
+
+/* Footer Columns */
+.footer-col {
+  flex: 1 1 150px; /* Flexible columns */
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col h4 {
+  color: gold; /* Use gold for headings */
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+}
+
+.footer-col a {
+  color: #adb5bd;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.footer-col a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.footer-col p {
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+/* Special style for the first brand column */
+.brand-info h4 {
+  color: gold;
+  font-size: 1.5em;
+}
+
+/* Social Media Icons */
+.social-icons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #0c3a4a; /* Dark teal */
+  color: white;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-icon-btn:hover {
+  background-color: gold;
+  color: #333;
+}
+
+/* === RESPONSIVE STYLES === */
+/* This breakpoint activates on screens 800px wide or smaller */
+
+@media (max-width: 800px) {
+
+  /* 1. Header: Stack everything */
+  header {
+    flex-direction: column; /* Stack logo, nav, and icons */
+    gap: 15px;
+    padding: 20px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column; /* Stack nav links vertically */
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-icons {
+    justify-content: center; /* Center the icons */
+  }
+
+  /* 2. Main Content: Stack cards and options */
+  .main-content-wrapper {
+    flex-direction: column; /* Stack card container and options */
+    align-items: center; /* Center them when stacked */
+  }
+
+  .container {
+    justify-content: center; /* Ensure cards stay centered */
+  }
+  
+  .card {
+    /* Make card take up more width on mobile */
+    width: 90%; 
+  }
+  
+  .options-container {
+     align-items: center;
+     width: 100%;
+  }
+  
+  .option-item {
+    width: 90%;
+    text-align: center;
+  }
+
+  /* 3. Footer: Stack columns */
+  .footer-inner-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-col {
+    align-items: center;
+    min-width: 90%; /* Make columns wider */
+  }
+
+  .social-icons {
+    justify-content: center; /* Center social icons */
+  }
+}
+
+/* === HOMEPAGE HERO STYLES === */
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr; /* 3 columns */
+  align-items: center;
+  padding: 40px;
+  gap: 20px;
+  flex: 1; /* This makes it fill the main space */
+  border-bottom: 10px solid #235973; /* Thick border like the design */
+}
+
+/* 1. Left Column: Mission Text */
+.hero-text {
+  padding-right: 20px;
+}
+
+.hero-text h1 {
+  font-size: 2.5em;
+  color: white;
+  margin-top: 0;
+}
+
+.hero-text p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #c0c0c0; /* Light grey text */
+}
+
+.hero-text h3 {
+  font-size: 1em;
+  color: #c0c0c0;
+  font-weight: normal;
+}
+
+.store-status {
+  display: flex;
+  gap: 10px;
+}
+
+.store-btn {
+  padding: 15px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.store-btn.open {
+  background-color: white;
+  color: #333;
+}
+
+.store-btn.unavailable {
+  background-color: #48606c;
+  color: #c0c0c0;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+}
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #c0c0c0;
+  align-self: stretch; /* Make it fill the height */
+  padding-left: 20px;
+}
+
+.stat-item {
+  border-left: 3px solid #48606c; /* Vertical lines */
+  padding-left: 15px;
+  flex: 1; /* Distribute items evenly */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-item span {
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+.stat-item strong {
+  font-size: 2em;
+  color: white;
+  margin: 5px 0;
 }
