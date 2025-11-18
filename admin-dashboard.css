@@ -1,0 +1,104 @@
+/* Styles for the admin dashboard */
+
+.dashboard-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  flex: 1;
+  background: #0e3a4d;
+}
+
+.dashboard-container {
+  background: #235973;
+  border: 3px solid gold;
+  padding: 30px 40px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  color: white;
+}
+
+.dashboard-container h1 {
+  color: gold;
+  margin-top: 0;
+}
+
+.loading-bar {
+  text-align: center;
+  padding: 40px;
+  font-style: italic;
+  color: #adb5bd;
+}
+
+/* Table Styles */
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table-header, .table-row {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #48606c;
+}
+
+.table-header {
+  background: #0c3a4a;
+  color: gold;
+  font-weight: bold;
+}
+
+.table-cell {
+  flex: 1;
+  padding: 15px 10px;
+  min-width: 150px;
+}
+
+.table-cell small {
+  color: #adb5bd;
+}
+
+/* Style for the status dropdown */
+.status-select {
+  font-family: Arial, sans-serif;
+  font-size: 0.9em;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #48606c;
+  background: #0e3a4d;
+  color: white;
+}
+
+/* Responsive Table */
+@media (max-width: 800px) {
+  .table-header {
+    display: none; /* Hide header on mobile */
+  }
+
+  .table-row {
+    flex-direction: column;
+    margin-bottom: 15px;
+    border: 2px solid #48606c;
+    border-radius: 5px;
+  }
+
+  .table-cell {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px dotted #48606c;
+  }
+  
+  .table-cell:last-child {
+    border-bottom: none;
+  }
+
+  .table-cell::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: gold;
+    padding-right: 10px;
+  }
+}

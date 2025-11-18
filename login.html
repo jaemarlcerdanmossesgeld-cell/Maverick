@@ -3,31 +3,113 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Maverick</title>
+    <title>Login - Maverick Racing</title>
     <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="loginStyle.css" />
   </head>
+
   <body>
-    <div class="login-container">
-      <form id="login-form">
-        <h2>Login</h2>
+    
+    <div class="login-page-wrapper">
+      <div class="login-logo"><a href="index.html"><img src="images/logo.png" alt="Maverick Racing Logo" /></a></div>
 
-        <div class="input-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" required />
+      <div class="login-container">
+        <h2 id="form-title">LOGIN</h2>
+        
+        <form id="login-form" class="login-form">
+          <input type="email" id="email" placeholder="Email" required />
+          <input type="password" id="password" placeholder="Password" required />
+          <div id="login-message" class="login-form-message"></div>
+          <button type="submit" id="login-btn">LOGIN</button>
+          <button type="submit" id="signup-btn" class="hidden">CREATE ACCOUNT</button>
+        </form>
+        <div class="login-links">
+          <!-- STILL DONT HAVE FUNCTION (in progress..) -->
+          <a href="#">Forgot Password?</a>
+          <a href="#" id="toggle-link">Don't have an account? Sign Up</a>
         </div>
-
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required />
-        </div>
-
-        <button type="submit" class="login-button">Login</button>
-
-        <p id="error-message" class="error-message"></p>
-      </form>
+      </div>
     </div>
+    
+    <script type="module" src="maverickScript.js"></script>
+    <script type="module">
+      try {
+        const { auth } = await window.firebase.ready;
+        const { signInWithEmailAndPassword, createUserWithEmailAndPassword } = window.firebase.authFunctions;
 
-    <script src="loginScript.js"></script>
+        const loginForm = document.getElementById("login-form");
+        const loginBtn = document.getElementById("login-btn");
+        const signupBtn = document.getElementById("signup-btn");
+        const toggleLink = document.getElementById("toggle-link");
+        const title = document.getElementById("form-title");
+        const emailEl = document.getElementById("email");
+        const passwordEl = document.getElementById("password");
+        const messageEl = document.getElementById("login-message");
+        
+        let isLoginMode = true;
+
+        //TOGGLE FORM MODE (UI)
+        toggleLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          isLoginMode = !isLoginMode;
+          if (isLoginMode) {
+            title.textContent = "LOGIN";
+            loginBtn.classList.remove("hidden");
+            signupBtn.classList.add("hidden");
+            toggleLink.textContent = "Don't have an account? Sign Up";
+          } else {
+            title.textContent = "CREATE ACCOUNT";
+            loginBtn.classList.add("hidden");
+            signupBtn.classList.remove("hidden");
+            toggleLink.textContent = "Already have an account? Login";
+          }
+          messageEl.className = "login-form-message";
+          messageEl.textContent = "";
+        });
+        
+        //FORM SUBMIT HANDLER
+        loginForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          
+          const email = emailEl.value;
+          const password = passwordEl.value;
+
+          if (isLoginMode) {
+            //LOGIN ACTION
+            messageEl.textContent = "Logging in..."; messageEl.className = "login-form-message loading";
+            try {
+              const userCredential = await signInWithEmailAndPassword(auth, email, password);
+              messageEl.textContent = "Success! Redirecting in a moment..."; messageEl.className = "login-form-message success";
+              
+              //Use 200ms delay for token saving
+              setTimeout(() => {
+                if (userCredential.user.email === "admin@maverick.com") {
+                  window.location.href = "admin-dashboard.html";
+                } else {
+                  window.location.href = "index.html";
+                }
+              }, 200); 
+              
+            } catch (error) {
+              messageEl.textContent = "Error: " + error.message; messageEl.className = "login-form-message error";
+            }
+          } else {
+            //SIGN UP ACTION 
+            messageEl.textContent = "Creating account..."; messageEl.className = "login-form-message loading";
+            try {
+              const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+              messageEl.textContent = "Account created! Please log in."; messageEl.className = "form-message success";
+              toggleLink.click(); 
+            } catch (error) {
+              messageEl.textContent = "Error: " + error.message; messageEl.className = "login-form-message error";
+            }
+          }
+        });
+      } catch (error) {
+         console.error("Login script failed:", error);
+      }
+    </script>
+    
   </body>
 </html>

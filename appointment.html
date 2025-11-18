@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book an Appointment - Maverick Racing</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="maverickStyle.css" />
+    <link rel="stylesheet" href="appointment.css" />
+  </head>
+
+  <body>
+    
+    <header>
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Maverick Racing Logo" />
+        </a>
+      </div>
+      <nav>
+        <a href="index.html">HOME</a> 
+        <a href="maverickPage.html">CATALOGUE</a>
+        <a href="appointment.html">APPOINTMENT</a> <a href="#">ABOUT US</a>
+      </nav>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." />
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <div class="header-icons">
+        <a href="#" class="icon-link">
+          <i class="fa-solid fa-globe"></i> EN(US)
+        </a>
+        <a href="#" class="icon-link">
+          <i class="fa-solid fa-map-marker-alt"></i>
+        </a>
+        <a href="login.html" class="icon-link">
+          <i class="fa-solid fa-user"></i>
+        </a>
+      </div>
+    </header>
+
+    <div class="formbold-main-wrapper">
+      <div class="formbold-form-wrapper">
+        <form id="appointment-form">
+          
+          <div class="formbold-mb-5">
+            <label for="name" class="formbold-form-label"> Full Name </label>
+            <input type="text" name="name" id="name" placeholder="Full Name" class="formbold-form-input" required />
+          </div>
+          
+          <div class="formbold-mb-5">
+            <label for="phone" class="formbold-form-label"> Phone Number </label>
+            <input type="text" name="phone" id="phone" placeholder="Enter your phone number" class="formbold-form-input" required />
+          </div>
+          
+          <div class="formbold-mb-5">
+            <label for="email" class="formbold-form-label"> Email Address </label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" class="formbold-form-input" required />
+          </div>
+          
+          <div class="flex flex-wrap formbold--mx-3">
+            <div class="w-full sm:w-half formbold-px-3">
+              <div class="formbold-mb-5 w-full">
+                <label for="date" class="formbold-form-label"> Date </label>
+                <input type="date" name="date" id="date" class="formbold-form-input" required />
+              </div>
+            </div>
+            <div class="w-full sm:w-half formbold-px-3">
+              <div class="formbold-mb-5">
+                <label for="time" class="formbold-form-label"> Time </label>
+                <input type="time" name="time" id="time" class="formbold-form-input" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="formbold-mb-5 formbold-pt-3">
+            <label class="formbold-form-label formbold-form-label-2">
+              Address Details
+            </label>
+            <div class="flex flex-wrap formbold--mx-3">
+              <div class="w-full sm:w-half formbold-px-3">
+                <div class="formbold-mb-5">
+                  <input type="text" name="area" id="area" placeholder="Enter area" class="formbold-form-input" />
+                </div>
+              </div>
+              <div class="w-full sm:w-half formbold-px-3">
+                <div class="formbold-mb-5">
+                  <input type="text" name="city" id="city" placeholder="Enter city" class="formbold-form-input" required />
+                </div>
+              </div>
+              <div class="w-full sm:w-half formbold-px-3">
+                <div class="formbold-mb-5">
+                  <input type="text" name="state" id="state" placeholder="Enter state" class="formbold-form-input" />
+                </div>
+              </div>
+              <div class="w-full sm:w-half formbold-px-3">
+                <div class="formbold-mb-5">
+                  <input type="text" name="post-code" id="post-code" placeholder="Post Code" class="formbold-form-input" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="form-message" class="form-message"></div>
+
+          <div>
+            <button type="submit" class="formbold-btn">Book Appointment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <footer class="modern-footer">
+      <div class="footer-inner-content">
+        <div class="footer-col brand-info">
+          <h4>MAVERICK</h4>
+          <p>&copy; 2024</p>
+        </div>
+        <div class="footer-col">
+          <h4>Customers</h4>
+          <a href="#">Buyer</a>
+          <a href="#">Supplier</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About us</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Further Information</h4>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+          <h4>Follow us</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon-btn"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon-btn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon-btn"><i class="fab fa-telegram-plane"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <script src="/firebase/firebase-app.js"></script>
+    <script src="/firebase/firebase-auth.js"></script>
+    <script src="/firebase/firebase-firestore.js"></script>
+    <script src="/firebase/firebase-storage.js"></script>
+    
+    <script src="maverickScript.js"></script>
+    
+    <script type="module">
+      // 1. Wait for Firebase to be ready
+      const { auth, db, appId } = await window.firebase.ready;
+      
+      // 2. Get the firestore functions
+      const { collection, addDoc, serverTimestamp } = window.firebase.firestore;
+
+      const form = document.getElementById("appointment-form");
+      const messageEl = document.getElementById("form-message");
+      
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        // Show loading message
+        messageEl.textContent = "Booking appointment...";
+        messageEl.className = "form-message loading";
+        
+        try {
+          // 2. Get the current user's ID
+          const userId = auth.currentUser ? auth.currentUser.uid : "anonymous_booking";
+          
+          // 3. Create a data object from the form
+          const formData = new FormData(form);
+          const appointmentData = {
+            name: formData.get("name"),
+            phone: formData.get("phone"),
+            email: formData.get("email"),
+            date: formData.get("date"),
+            time: formData.get("time"),
+            city: formData.get("city"),
+            area: formData.get("area"),
+            state: formData.get("state"),
+            postCode: formData.get("post-code"),
+            status: "pending", // Admin can update this later
+            createdAt: serverTimestamp(),
+            bookedByUserId: userId // Link to the user who booked it
+          };
+          
+          //Save to Firestore
+          const collectionPath = `/artifacts/${appId}/public/data/appointments`;
+          const docRef = await addDoc(collection(db, collectionPath), appointmentData);
+          
+          console.log("Appointment saved with ID: ", docRef.id);
+          messageEl.textContent = "Success! Your appointment is booked.";
+          messageEl.className = "form-message success";
+          form.reset();
+          
+        } catch (error) {
+          console.error("Error booking appointment:", error);
+          messageEl.textContent = "Error: Could not book appointment.";
+          messageEl.className = "form-message error";
+        }
+      });
+    </script>
+    
+  </body>
+</html>
