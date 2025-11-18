@@ -1,93 +1,525 @@
-/* Global reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-/* Page background */
+html,
 body {
-  background: #0e3a4d;
-  color: #e6edf3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-/* Login card */
-.login-container {
-  background: #161b22;
-  padding: 40px;
-  width: 350px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  border: 1px solid #30363d;
-}
-
-/* Title */
-.login-container h2 {
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: 600;
-  font-size: 26px;
-}
-
-/* Input spacing */
-.input-group {
-  margin-bottom: 15px;
+body {
   display: flex;
   flex-direction: column;
+
 }
 
-/* Label */
-.input-group label {
-  font-size: 14px;
-  margin-bottom: 6px;
-}
-
-/* Input box */
-.input-group input {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #30363d;
-  background: #0d1117;
-  color: #e6edf3;
-  transition: 0.2s;
-}
-
-/* Focus effect */
-.input-group input:focus {
-  border-color: #1f6feb;
-  outline: none;
-  box-shadow: 0 0 5px rgba(31, 111, 235, 0.5);
-}
-
-/* Login button */
-.login-button {
-  width: 100%;
-  background: #1f6feb;
-  border: none;
-  padding: 12px;
-  margin-top: 5px;
-  border-radius: 8px;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #235973;
   color: white;
-  font-weight: 600;
-  font-size: 15px;
+  
+  /* Fade in on page load */
+  animation: page-fade-in 0.5s ease-in;
+}
+header {
+  background: #235973;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+.logo img {
+  height: 10px; /* adjust as needed */
+  width: auto;
+  display: block;
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+.search {
+  display: none;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  padding: 5px 5px 5px 15px;
+}
+
+.search-container input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #333;
+  font-weight: bold;
+}
+
+.search-container button {
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
   cursor: pointer;
-  transition: 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Button hover */
-.login-button:hover {
-  background: #1056c6;
+/* Style the new icon links */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-/* Error message */
-.error-message {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #ff4f4f;
+.icon-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+/* === STYLES FOR THE WRAPPER === */
+.main-content-wrapper {
+  display: flex;
+  flex: 1; /* Makes wrapper fill vertical space */
+  padding: 40px;
+  gap: 10px;
+  align-items: flex-start; /* Stops cards from stretching */
+}
+
+/* === STYLES FOR CARD CONTAINER === */
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  flex-shrink: 0; /* Stops this container from shrinking */
+}
+.container.is-filtered {
+  justify-content: flex-start;
+  transition: justify-content 0.3s ease;
+}
+.card {
+  background: #48606c;
+  border: 3px solid gold;
+  padding: 20px;
+  border-radius: 10px;
+  width: 280px;
   text-align: center;
+}
+.card img {
+  width: 100%;
+  height: auto;
+}
+/* === STYLES FOR OPTIONS === */
+
+.options-container {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.options-set {
+  display: none;
+  width: 100%;
+  flex-direction: column; /* Stacks options top-to-bottom */
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+/* This is the style for the individual model links */
+.option-item {
+  background: #235973;
+  border: 2px solid gold;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+
+  /* Animation for a clean fade-in */
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.3s forwards;
+}
+
+.option-item:hover {
+  background: #48606c;
+}
+/* A simple fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* === SPACER === */
+.spacer {
+  flex-grow: 1; /* This soaks up all extra space */
+}
+
+/* === MODERN FOOTER STYLES === */
+.footer-inner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.modern-footer {
+  margin-top: auto; /* Pushes footer to the bottom */
+  background-color: #235973; /* Your header color */
+  padding: 40px;
+  color: #adb5bd; /* Light grey text */
+  position: relative;
+  z-index: 5;
+}
+
+/* Footer Columns */
+.footer-col {
+  flex: 1 1 150px; /* Flexible columns */
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col h4 {
+  color: gold; /* Use gold for headings */
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+}
+
+.footer-col a {
+  color: #adb5bd;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.footer-col a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.footer-col p {
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.brand-info h4 {
+  color: gold;
+  font-size: 1.5em;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #0c3a4a; /* Dark teal */
+  color: white;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-icon-btn:hover {
+  background-color: gold;
+  color: #333;
+}
+
+/* === PAGE TRANSITION STYLES === */
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body.page-fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+
+/* === RESPONSIVE STYLES === */
+@media (max-width: 800px) {
+  /* ... all your responsive styles ... */
+  header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-icons {
+    justify-content: center;
+  }
+  .main-content-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .container {
+    justify-content: center;
+  }
+  .card {
+    width: 90%; 
+  }
+  .options-container {
+     align-items: center;
+     width: 100%;
+  }
+  .option-item {
+    width: 90%;
+    text-align: center;
+  }
+  .footer-inner-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-col {
+    align-items: center;
+    min-width: 90%;
+  }
+  .social-icons {
+    justify-content: center;
+  }
+  .hero-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-text {
+    padding-right: 0;
+  }
+  .store-status {
+    justify-content: center;
+  }
+  .hero-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0;
+  }
+  .stat-item {
+    border-left: none;
+    border-top: 3px solid #48606c;
+    padding-top: 15px;
+    padding-left: 10px;
+    min-width: 120px;
+    text-align: left;
+  }
+}
+
+/* === HOMEPAGE HERO STYLES === */
+/* ... all your hero styles ... */
+.hero-section {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr;
+  align-items: center;
+  padding: 40px;
+  gap: 20px;
+  flex: 1;
+  border-bottom: 10px solid #235973;
+}
+.hero-text {
+  padding-right: 20px;
+}
+.hero-text h1 {
+  font-size: 2.5em;
+  color: white;
+  margin-top: 0;
+}
+.hero-text p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #c0c0c0;
+}
+.hero-text h3 {
+  font-size: 1em;
+  color: #c0c0c0;
+  font-weight: normal;
+}
+.store-status {
+  display: flex;
+  gap: 10px;
+}
+.store-btn {
+  padding: 15px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+}
+.store-btn.open {
+  background-color: white;
+  color: #333;
+}
+.store-btn.unavailable {
+  background-color: #48606c;
+  color: #c0c0c0;
+}
+.hero-image img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+}
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #c0c0c0;
+  align-self: stretch;
+  padding-left: 20px;
+}
+.stat-item {
+  border-left: 3px solid #48606c;
+  padding-left: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.stat-item span {
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+.stat-item strong {
+  font-size: 2em;
+  color: white;
+  margin: 5px 0;
+}
+
+/* === LOGIN PAGE STYLES === */
+/* ... all your login styles ... */
+.login-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+.login-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.login-logo img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+}
+.login-container {
+  background: #235973;
+  border: 3px solid gold;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.login-container h2 {
+  color: gold;
+  text-align: center;
+  margin: 0 0 10px 0;
+  font-size: 2em;
+}
+.login-container input {
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.login-container button {
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: gold;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+}
+.login-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.login-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+.login-links a:hover {
+  text-decoration: underline;
+}
+
+/* === NEW: Login Form Message Styles === */
+.login-form-message {
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  display: none; /* Hidden by default */
+  text-align: center;
+}
+
+.login-form-message.loading {
+  display: block;
+  background-color: #48606c;
+  color: white;
+  border: 1px solid #adb5bd;
+}
+
+.login-form-message.success {
+  display: block;
+  background-color: #38a169; /* Green */
+  color: white;
+  border: 1px solid #68d391;
+}
+
+.login-form-message.error {
+  display: block;
+  background-color: #c53030; /* Red */
+  color: white;
+  border: 1px solid #f56565;
+}
+
+/* === THE FIX: Add this class === */
+.hidden {
+  display: none;
 }

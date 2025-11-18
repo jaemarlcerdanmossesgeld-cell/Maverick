@@ -1,0 +1,137 @@
+/* === APPOINTMENT PAGE (FORMBOLD) STYLES === */
+
+.formbold-mb-5 {
+  margin-bottom: 20px;
+}
+.formbold-pt-3 {
+  padding-top: 12px;
+}
+.formbold-main-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  flex: 1; /* Makes it fill the space */
+  font-family: Arial, sans-serif; /* Use main site font */
+}
+
+.formbold-form-wrapper {
+  margin: 0 auto;
+  max-width: 700px; /* Increased max-width */
+  width: 100%;
+  background: #235973; /* THEME: Header color */
+  border: 3px solid gold; /* THEME: Gold border */
+  border-radius: 10px;
+  padding: 30px 40px;
+  box-sizing: border-box; /* Added */
+}
+.formbold-form-label {
+  display: block;
+  font-weight: 500;
+  font-size: 16px;
+  color: white; /* THEME: White text */
+  margin-bottom: 12px;
+}
+.formbold-form-label-2 {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: gold; /* THEME: Gold text */
+}
+
+.formbold-form-input {
+  width: 100%;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: 1px solid #48606c; /* THEME: Card color */
+  background: #0e3a4d; /* THEME: Background color */
+  font-weight: 500;
+  font-size: 16px;
+  color: white; /* THEME: White text */
+  outline: none;
+  resize: none;
+  box-sizing: border-box; /* Added */
+  font-family: Arial, sans-serif; /* Use main site font */
+}
+.formbold-form-input:focus {
+  border-color: gold; /* THEME: Gold focus */
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Style for date/time picker icon */
+.formbold-form-input[type="date"]::-webkit-calendar-picker-indicator,
+.formbold-form-input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.formbold-btn {
+  text-align: center;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 14px 32px;
+  border: none;
+  font-weight: 600;
+  background-color: gold; /* THEME: Gold button */
+  color: #333; /* THEME: Dark text */
+  width: 100%;
+  cursor: pointer;
+  font-family: Arial, sans-serif; /* Use main site font */
+}
+.formbold-btn:hover {
+  background-color: #ffd700; /* Brighter gold */
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.formbold--mx-3 {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+.formbold-px-3 {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.flex {
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.w-full {
+  width: 100%;
+}
+@media (min-width: 540px) {
+  .sm\:w-half {
+    width: 50%;
+  }
+}
+
+/* === NEW: Form Message Styles === */
+.form-message {
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: none; /* Hidden by default */
+}
+
+.form-message.loading {
+  display: block;
+  background-color: #48606c;
+  color: white;
+  border: 1px solid #adb5bd;
+}
+
+.form-message.success {
+  display: block;
+  background-color: #38a169; /* Green */
+  color: white;
+  border: 1px solid #68d391;
+}
+
+.form-message.error {
+  display: block;
+  background-color: #c53030; /* Red */
+  color: white;
+  border: 1px solid #f56565;
+}

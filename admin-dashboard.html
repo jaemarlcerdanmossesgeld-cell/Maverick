@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Maverick</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="maverickStyle.css" />
+    <link rel="stylesheet" href="admin-dashboard.css" />
+  </head>
+
+  <body>
+    
+    <header>
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="Maverick Racing Logo" />
+        </a>
+      </div>
+      <nav>
+        <a href="index.html">HOME</a> 
+        <a href="maverickPage.html">CATALOGUE</a>
+        <a href="appointment.html">APPOINTMENT</a>
+        <a href="#">ABOUT US</a>
+      </nav>
+      <div class="search-container">
+        </div>
+      <div class="header-icons">
+        </div>
+    </header>
+
+    <main class="dashboard-wrapper">
+      <div class="dashboard-container">
+        <h1>Admin Dashboard</h1>
+        <p>Viewing all submitted appointments. This list will update in real-time.</p>
+        
+        <div class="appointments-table">
+          <div class="table-header">
+            <div class="table-cell">Name</div>
+            <div class="table-cell">Email & Phone</div>
+            <div class="table-cell">Date & Time</div>
+            <div class="table-cell">City</div>
+            <div class="table-cell">Status</div>
+          </div>
+          <div id="appointments-list">
+            <div class="loading-bar">Loading appointments...</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      </footer>
+    
+    
+    <script type="module" src="maverickScript.js"></script>
+    
+    <script type="module">
+      try {
+        const { auth, db, appId } = await window.firebase.ready;
+        const { onAuthStateChanged } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js');
+        const { collection, query, onSnapshot, doc, updateDoc } = window.firebase.firestore;
+        const appointmentsListEl = document.getElementById("appointments-list");
+
+        // AUTH GUARD Fail safe function if not loading.
+        // We wait 500ms to allow the auth token from the login page to fully register 
+        setTimeout(() => {
+            onAuthStateChanged(auth, (user) => {
+              
+              if (user) {
+                
+                if (user.email === "admin@maverick.com") {
+                  // User is ADMIN. Load the data.
+                  console.log("Admin authenticated:", user.uid);
+                  fetchAppointments();
+                
+                } else if (user.isAnonymous) {
+                  // User is anonymous. We wait for the final state.
+                  console.log("Auth state pending... waiting for admin login.");
+                
+                } else {
+                  // User is a different, non-admin user
+                  console.warn("Access denied: User is not admin.");
+                  window.location.href = "index.html";
+                }
+              } else {
+                 // No user is logged in
+                 console.warn("Access denied: No user logged in.");
+                 window.location.href = "login.html";
+              }
+            });
+        }, 500); // 500ms guaranteed wait
+        // === END OF FINAL TIMING FIX ===
+
+
+        // --- 2. FETCH DATA ---
+        async function fetchAppointments() {
+          const collectionPath = `/artifacts/${appId}/public/data/appointments`;
+          
+          if (!db) {
+              console.error("Database connection is null. Cannot fetch data.");
+              return;
+          }
+
+          const q = query(collection(db, collectionPath));
+          
+          // Listen for real-time changes
+          onSnapshot(q, (querySnapshot) => {
+            console.log("Received appointment data update. Documents found:", querySnapshot.docs.length);
+            
+            if (!appointmentsListEl) {
+              console.error("Error: appointments-list element not found.");
+              return;
+            }
+            
+            appointmentsListEl.innerHTML = ""; // Clear list
+            
+            if (querySnapshot.empty) {
+              appointmentsListEl.innerHTML = "<p>No appointments found.</p>";
+              return;
+            }
+
+            querySnapshot.forEach((docSnap) => {
+              const appt = docSnap.data();
+              const apptId = docSnap.id;
+              
+              // Create the HTML for one appointment row
+              const row = document.createElement("div");
+              row.className = "table-row";
+              row.innerHTML = `
+                <div class="table-cell" data-label="Name">${appt.name}</div>
+                <div class="table-cell" data-label="Contact">
+                  ${appt.email}<br>
+                  <small>${appt.phone}</small>
+                </div>
+                <div class="table-cell" data-label="Date">
+                  ${appt.date}<br>
+                  <small>${appt.time}</small>
+                </div>
+                <div class="table-cell" data-label="City">${appt.city}</div>
+                <div class="table-cell" data-label="Status">
+                  <select class="status-select" data-id="${apptId}">
+                    <option value="pending" ${appt.status === 'pending' ? 'selected' : ''}>Pending</option>
+                    <option value="confirmed" ${appt.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+                    <option value="completed" ${appt.status === 'completed' ? 'selected' : ''}>Completed</option>
+                    <option value="cancelled" ${appt.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                  </select>
+                </div>
+              `;
+              appointmentsListEl.appendChild(row);
+            });
+            
+            addStatusListeners();
+          }, (error) => {
+              //This will display the permission error in the dashboard itself.
+              console.error("Firestore Read Error:", error.message);
+              appointmentsListEl.innerHTML = `<p style="color: red; padding: 20px;">ERROR LOADING DATA: ${error.message}. Please check Firestore Security Rules.</p>`;
+          });
+        }
+
+        //UPDATE STATUS
+        function addStatusListeners() {
+          const selects = document.querySelectorAll(".status-select");
+          selects.forEach(select => {
+            select.addEventListener("change", async (e) => {
+              const newStatus = e.target.value;
+              const docId = e.target.dataset.id;
+              console.log(`Updating ${docId} to ${newStatus}`);
+
+              const docPath = `/artifacts/${appId}/public/data/appointments/${docId}`;
+              const docRef = doc(db, docPath);
+              
+              try {
+                await updateDoc(docRef, {
+                  status: newStatus
+                });
+                console.log("Status updated!");
+              } catch (error) {
+                console.error("Error updating status:", error);
+              }
+            });
+          });
+        }
+      } catch (error) {
+        console.error("Admin Dashboard script failed:", error);
+      }
+    </script>
+    
+  </body>
+</html>
