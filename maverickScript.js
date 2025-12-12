@@ -1,12 +1,6 @@
 /*VERY SENSITIVE INFORMATION, Please don't share it to anyone, as it is my database key :))*/
 const firebaseConfig = {
-  apiKey: "AIzaSyBFTfKBJUX8R7rLRIen6unGeIwIFsEIKGo",
-  authDomain: "maverick-8834a.firebaseapp.com",
-  projectId: "maverick-8834a",
-  storageBucket: "maverick-8834a.firebasestorage.app",
-  messagingSenderId: "988149394128",
-  appId: "1:988149394128:web:77aa4f752a7bfc383e8cd5",
-  measurementId: "G-7H8LPM9K44"
+
 };
 
 
@@ -189,4 +183,5 @@ document.addEventListener("DOMContentLoaded", () => {
       if (mapModal) { mapModal.style.display = "none"; }
     });
   }
+
 });
